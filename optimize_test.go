@@ -25,6 +25,8 @@ func testOptimizeAndAddConst(a, b, c uint64, t *testing.T) {
 }
 
 func TestOptimizeBitVector(t *testing.T) {
+	rand.Seed(0)
+
 	testOptimizeAndAddConst(0, 10, 1, t)
 	for i := 0; i < 10; i++ {
 		a := rand.Uint64()

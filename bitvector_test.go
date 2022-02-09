@@ -8,9 +8,11 @@ import (
 const TestLoopCount = 1000
 
 func TestNot(t *testing.T) {
+	rand.Seed(0)
+
 	input1 := NewInputVector(64)
 	compute := input1.Not()
-	for i := 0; i< TestLoopCount; i++ {
+	for i := 0; i < TestLoopCount; i++ {
 		a := rand.Uint64()
 		s := ^a
 		input1.SetUint64(a)
@@ -25,6 +27,8 @@ func TestNot(t *testing.T) {
 // func (v *BitVector) ShiftRight(n int) *BitVector {
 
 func TestAnd(t *testing.T) {
+	rand.Seed(0)
+
 	input1 := NewInputVector(64)
 	input2 := NewInputVector(64)
 	compute := input1.And(&input2.BitVector)
@@ -41,6 +45,8 @@ func TestAnd(t *testing.T) {
 }
 
 func TestOr(t *testing.T) {
+	rand.Seed(0)
+
 	input1 := NewInputVector(64)
 	input2 := NewInputVector(64)
 	compute := input1.Or(&input2.BitVector)
@@ -57,6 +63,8 @@ func TestOr(t *testing.T) {
 }
 
 func TestXor(t *testing.T) {
+	rand.Seed(0)
+
 	input1 := NewInputVector(64)
 	input2 := NewInputVector(64)
 	compute := input1.Xor(&input2.BitVector)
@@ -73,6 +81,8 @@ func TestXor(t *testing.T) {
 }
 
 func TestAdd(t *testing.T) {
+	rand.Seed(0)
+
 	input1 := NewInputVector(64)
 	input2 := NewInputVector(64)
 	compute := input1.Add(&input2.BitVector)
@@ -89,6 +99,8 @@ func TestAdd(t *testing.T) {
 }
 
 func TestSub(t *testing.T) {
+	rand.Seed(0)
+
 	input1 := NewInputVector(64)
 	input2 := NewInputVector(64)
 	compute := input1.Sub(&input2.BitVector)
