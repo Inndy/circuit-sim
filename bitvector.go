@@ -106,6 +106,9 @@ func (v *BitVector) ShiftRight(n int) *BitVector {
 	}
 
 	copy(r.Nodes[n:], r.Nodes)
+	for i := 0; i < n; i++ {
+		r.Nodes[i] = Low
+	}
 	return r
 }
 
