@@ -6,6 +6,12 @@ func NewBitArray(n int) BitArray {
 	return make([]Bit, n)
 }
 
+func NewBitArrayFromUint64(n int, v uint64) BitArray {
+	r := make(BitArray, n)
+	r.SetUint64(v)
+	return r
+}
+
 func setBit(a []byte, o int, b Bit) {
 	byteOffset := o / 8
 	bitOffset := o & 7
