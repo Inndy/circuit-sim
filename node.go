@@ -61,6 +61,53 @@ func (n *Node) String() string {
 	return buf.String()
 }
 
+var DumpIndex int
+func (n *Node) dump(name string, w io.Writer) {
+	if n.tick == tick {
+		return
+	}
+
+	if n.Name == "" {
+		n.Name = name
+	}
+	n.tick = tick
+
+	if n.a == nil || n.b == nil {
+		fmt.Fprintf(w, "/*%s*/\n", n.Name)
+		return
+	}
+
+	na := "nil"
+	nb := "nil"
+
+	if n.a != nil {
+		if n.a.Name != "" {
+			na = n.a.Name
+		} else {
+			na = fmt.Sprintf("n[%d]", DumpIndex)
+			DumpIndex++
+			n.a.dump(na, w)
+		}
+	}
+
+	if n.b != nil {
+		if n.b.Name != "" {
+			nb = n.b.Name
+		} else {
+			nb = fmt.Sprintf("n[%d]", DumpIndex)
+			DumpIndex++
+			n.b.dump(nb, w)
+		}
+	}
+
+	fmt.Fprintf(w, "%s = circuit.Nand(%s, %s)\n", name, na, nb)
+}
+
+func (n *Node) Dump(name string, w io.Writer) {
+	tick++
+	n.dump(name, w)
+}
+
 func GetConstNode(b Bit) *Node {
 	if b {
 		return High

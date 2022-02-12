@@ -14,6 +14,10 @@ func NewInputVector(n int) *InputVector {
 	return &InputVector{BitVector{nodes}, bits}
 }
 
+func (v *InputVector) Set(b BitArray) {
+	copy(v.Bits, b)
+}
+
 func (v *InputVector) GetBytes() []byte {
 	return v.Bits.GetBytes()
 }
